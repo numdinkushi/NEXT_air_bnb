@@ -56,7 +56,7 @@ const RegisterModal = () => {
             <div className="text-neutral-500 text-center p-4 font-light">
                 <div className="flex items-center gap-2 justify-center">
                     <div className="">Already have an account?</div>
-                    <div onClick={registerModal.onClose} className="text-neutral-800 cursor-pointer hover:underline">login</div>
+                    <div onClick={registerModal.onClose} className="text-neutral-800 cursor-pointer hover:underline">Login</div>
                 </div>
             </div>
         </div>
