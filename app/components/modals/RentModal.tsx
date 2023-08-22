@@ -10,6 +10,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
 import Map from "../Map";
 import dynamic from "next/dynamic";
+import Counter from "../inputs/Counter";
 
 enum STEPS {
     CATEGORY = 0,
@@ -50,10 +51,13 @@ const RentModal = () => {
 
     const watchCategory = watch('category');
     const watchLocation = watch('location');
+    const watchGuestCount = watch('guestCount');
+    const watchRoomCount = watch('roomCount');
+    const watchBathroomCount = watch('bathroomCount');
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
-    }), [watchLocation])
+    }), [watchLocation]);
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -121,6 +125,36 @@ const RentModal = () => {
         );
     }
 
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Share some basics about your place"
+                    subtitle="What amenities do you have?"
+                />
+                <Counter
+                    title="Guests"
+                    subtitle="How many guests do you allow?"
+                    value={watchGuestCount}
+                    onChange={(value) => setCustomValue('guestCount', value)}
+                />
+                <hr />
+                <Counter
+                    title="Rooms"
+                    subtitle="How many rooms do you have?"
+                    value={watchRoomCount}
+                    onChange={(value) => setCustomValue('roomCount', value)}
+                />
+                <hr />
+                <Counter
+                    title="Bathrooms"
+                    subtitle="How many guests do you allow?"
+                    value={watchBathroomCount}
+                    onChange={(value) => setCustomValue('bathroomCount', value)}
+                />
+            </div>
+        );
+    }
     return (
         <Modal
             isOpen={rentModal.isOpen}
