@@ -51,18 +51,20 @@ const LoginModal = () => {
                     setIsLoading(false);
 
                     if (callback?.error) {
+                        console.log({ error: callback?.error });
                         toast.error(callback.error);
-                    }else if (callback?.ok){
+                        router.push('/');
+                        router.refresh();
+                        // if (callback?.error == 'OAuthAccountNotLinked') {
+                        //     router.push('/');
+                        //     router.refresh();
+
+                        // }
+                    } else if (callback?.ok) {
                         toast.success('Logged in');
                         router.refresh();
                         loginModal.onClose();
                     }
-
-                    // if (callback?.ok) {
-                    //     toast.success('Logged in');
-                    //     router.refresh();
-                    //     loginModal.onClose();
-                    // }
                 });
         };
 
@@ -73,57 +75,20 @@ const LoginModal = () => {
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
-            <Heading
-                title="Welcome back"
-                subtitle="Login to your account!"
-            />
-            <Input
-                id="email"
-                label="Email"
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                required
-            />
-            <Input
-                id="password"
-                label="Password"
-                type="password"
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                required
-            />
+            <Heading title="Welcome back" subtitle="Login to your account!" />
+            <Input id="email" label="Email" disabled={isLoading} register={register} errors={errors} required />
+            <Input id="password" label="Password" type="password" disabled={isLoading} register={register} errors={errors} required />
         </div>
     );
 
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
-            <Button
-                outline
-                label="Continue with Google"
-                icon={FcGoogle}
-                onClick={() => signIn('google')}
-            />
-            <Button
-                outline
-                label="Continue with Github"
-                icon={AiFillGithub}
-                onClick={() => signIn('github')}
-            />
+            <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => signIn('google')} />
+            <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn('github')} />
             <div className="
              text-neutral-500 text-center mt-4 font-light">
-                <p>First time using Airbnb?
-                    <span
-                        onClick={onToggle}
-                        className="
-              text-neutral-800
-              cursor-pointer 
-              hover:underline
-            "
-                    > Create an account</span>
-                </p>
+                <p>First time using Airbnb? <span onClick={onToggle} className=" text-neutral-800 cursor-pointer hover:underline " > Create an account</span> </p>
             </div>
         </div>
     );
