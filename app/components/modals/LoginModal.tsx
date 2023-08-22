@@ -55,11 +55,6 @@ const LoginModal = () => {
                         toast.error(callback.error);
                         router.push('/');
                         router.refresh();
-                        // if (callback?.error == 'OAuthAccountNotLinked') {
-                        //     router.push('/');
-                        //     router.refresh();
-
-                        // }
                     } else if (callback?.ok) {
                         toast.success('Logged in');
                         router.refresh();
