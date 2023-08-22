@@ -14,6 +14,7 @@ import Heading from '../Heading';
 import Input from '../inputs/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../Button';
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -45,14 +46,14 @@ const RegisterModal = () => {
             })
             .finally(() => {
                 setIsLoading(false);
-            })
-    }
+            });
+    };
 
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
-            <Button outline label='Continue with Google' icon={FcGoogle} onClick={() => { }} />
-            <Button outline label='Continue with Github' icon={AiFillGithub} onClick={() => { }} />
+            <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => signIn('google')} />
+            <Button outline label='Continue with Github' icon={AiFillGithub} onClick={() => signIn('github')} />
             <div className="text-neutral-500 text-center p-4 font-light">
                 <div className="flex items-center gap-2 justify-center">
                     <div className="">Already have an account?</div>
@@ -60,7 +61,7 @@ const RegisterModal = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -69,7 +70,7 @@ const RegisterModal = () => {
             <Input id='name' label='Name' errors={errors} disabled={isLoading} register={register} required />
             <Input id='password' type='password' label='Password' errors={errors} disabled={isLoading} register={register} required />
         </div>
-    )
+    );
 
     return (
         <Modal
@@ -82,7 +83,7 @@ const RegisterModal = () => {
             body={bodyContent}
             footer={footerContent}
         />
-    )
-}
+    );
+};
 
 export default RegisterModal;
