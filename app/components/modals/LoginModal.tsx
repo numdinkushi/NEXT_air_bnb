@@ -22,8 +22,10 @@ import Button from "../Button";
 
 const LoginModal = () => {
     const router = useRouter();
+
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
+    
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -55,11 +57,6 @@ const LoginModal = () => {
                         toast.error(callback.error);
                         router.push('/');
                         router.refresh();
-                        // if (callback?.error == 'OAuthAccountNotLinked') {
-                        //     router.push('/');
-                        //     router.refresh();
-
-                        // }
                     } else if (callback?.ok) {
                         toast.success('Logged in');
                         router.refresh();

@@ -81,7 +81,7 @@ const Modal: React.FC<ModalProps> = ({
                                 </div>
                             </div>
                             {/* body */}
-                            <div className="relative px-2 py-5 overflow-y-scroll h-[250px]">{body} </div>
+                            <div className="relative px-2 py-5 overflow-y-scroll max-h-[250px]">{body} </div>
                             <div className="flex flex-col gap-1 p-2">
                                 <div className="flex flex-row item-center gap-4 w-full">
                                     {
