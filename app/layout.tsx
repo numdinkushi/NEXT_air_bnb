@@ -12,6 +12,8 @@ import SearchModal from './components/modals/SearchModal';
 
 const munito = Nunito({ subsets: ['latin'] });
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Airbnb',
   description: 'Air Bnb Clone',
