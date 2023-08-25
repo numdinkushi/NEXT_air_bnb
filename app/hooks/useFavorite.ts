@@ -24,7 +24,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
     }, [currentUser, listingId]);
 
     const toggleFavorite = useCallback(async (
-        e: React.MouseEvent<HTMLDListElement>
+        e: any
     ) => {
         e.stopPropagation();
 
